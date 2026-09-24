@@ -78,7 +78,7 @@ export default function RegisterAdmin() {
           <div className="flex items-center gap-2 bg-white/95 backdrop-blur-md px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full shadow-xs border border-white/70">
             <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#FFB647] animate-pulse" />
             <ShimmeringText
-              text="BukSU SBO System"
+              text="COT SBO Printing System"
               duration={3}
               className="text-[11px] sm:text-xs font-bold text-[#073474] tracking-wide"
             />
@@ -114,7 +114,7 @@ export default function RegisterAdmin() {
             <div className="leading-none">
               <div className="flex items-center gap-1.5">
                 <span className="text-xl font-black tracking-tight text-[#073474]">
-                  SBO
+                  COT SBO
                 </span>
                 <span className="text-xl font-black tracking-tight text-[#FF7701]">
                   Printing System

@@ -77,7 +77,7 @@ export default function WelcomePage() {
                 <span className="text-[17px] font-black tracking-tight text-[#073474]">
                   COT SBO
                 </span>
-                <span className="text-[17px] font-black tracking-tight text-slate-900">
+                <span className="text-[17px] font-black tracking-tight text-[#FF7701]">
                   Printing System
                 </span>
               </div>
@@ -234,7 +234,7 @@ export default function WelcomePage() {
                 <h1 className="text-[30px] min-[375px]:text-4xl sm:text-[44px] lg:text-[44px] xl:text-[48px] font-black tracking-tighter leading-[0.95] text-[#0F172A]">
                   Academic printing
                   <br />
-                  <span className="text-[#073474]">made simple</span>
+                  <span className="text-[#0a469b]">made simple</span>
                 </h1>
                 <p className="text-[14px] sm:text-[15px] leading-relaxed text-slate-600 max-w-[48ch] font-medium">
                   Submit your document online, choose your printing preferences,
