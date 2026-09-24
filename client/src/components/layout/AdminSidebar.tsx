@@ -117,7 +117,7 @@ function NavGroup({
                   className={[
                     "relative h-auto py-2.5 px-3 rounded-xl transition-all duration-150 group/nav",
                     isActive
-                      ? "!bg-[#073474] !text-white shadow-sm shadow-[#073474]/20"
+                      ? "!bg-[#0a469b] !text-white shadow-sm shadow-[#0a469b]/20"
                       : "text-slate-500 hover:text-[#FF7701] hover:bg-orange-50",
                   ].join(" ")}
                 >
@@ -232,7 +232,7 @@ export function AdminSidebar() {
           {/* System Name */}
           <div className="min-w-0 leading-none">
             <div className="flex items-center gap-1 whitespace-nowrap">
-              <span className="text-[15px] font-black tracking-tight text-[#073474]">
+              <span className="text-[15px] font-black tracking-tight text-[#0a469b]">
                 SBO
               </span>
 
@@ -265,7 +265,7 @@ export function AdminSidebar() {
               }
               alt={adminUser?.name || "Admin"}
             />
-            <AvatarFallback className="text-[10px] bg-[#073474]/10 text-[#073474] font-black">
+            <AvatarFallback className="text-[10px] bg-[#0a469b]/10 text-[#0a469b] font-black">
               {adminUser?.name?.charAt(0)?.toUpperCase() || "A"}
             </AvatarFallback>
           </Avatar>

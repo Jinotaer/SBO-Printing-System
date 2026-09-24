@@ -154,7 +154,7 @@ export default function LoginAdmin() {
                 </div>
                 <div className="leading-none">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-xl font-black tracking-tight text-[#073474]">
+                    <span className="text-xl font-black tracking-tight text-[#0a469b]">
                       COT SBO
                     </span>
                     <span className="text-xl font-black tracking-tight text-[#FF7701]">

@@ -74,7 +74,7 @@ export default function WelcomePage() {
             </div>
             <div className="leading-none">
               <div className="flex items-center gap-1">
-                <span className="text-[17px] font-black tracking-tight text-[#073474]">
+                <span className="text-[17px] font-black tracking-tight text-[#0a469b]">
                   COT SBO
                 </span>
                 <span className="text-[17px] font-black tracking-tight text-[#FF7701]">
@@ -90,21 +90,21 @@ export default function WelcomePage() {
           <nav className="hidden lg:flex items-center gap-7 text-[13px] font-semibold text-slate-600">
             <a
               href="#how-it-works"
-              className="hover:text-[#073474] transition-colors"
+              className="hover:text-[#0a469b] transition-colors"
             >
               How It Works
             </a>
             <a
               href="#guidelines"
-              className="hover:text-[#073474] transition-colors"
+              className="hover:text-[#0a469b] transition-colors"
             >
               Guidelines
             </a>
             <a
               href="#track"
-              className="hover:text-[#073474] transition-colors inline-flex items-center gap-1.5"
+              className="hover:text-[#0a469b] transition-colors inline-flex items-center gap-1.5"
             >
-              <Search className="w-3.5 h-3.5 text-[#073474]" />
+              <Search className="w-3.5 h-3.5 text-[#0a469b]" />
               Track Request
             </a>
           </nav>
@@ -113,7 +113,7 @@ export default function WelcomePage() {
             <Link to="/login">
               <Button
                 type="button"
-                className="h-9 px-4 bg-white hover:bg-slate-50 text-[#073474] text-[13px] font-bold rounded-xl border border-slate-200 shadow-sm flex items-center gap-2"
+                className="h-9 px-4 bg-white hover:bg-slate-50 text-[#0a469b] text-[13px] font-bold rounded-xl border border-slate-200 shadow-sm flex items-center gap-2"
               >
                 <LogIn className="w-4 h-4" />
                 Admin Sign In
@@ -163,7 +163,7 @@ export default function WelcomePage() {
               onClick={() => setMobileOpen(false)}
               className="block"
             >
-              <Button className="w-full h-10 bg-[#073474] text-white font-bold rounded-xl">
+              <Button className="w-full h-10 bg-[#0a469b] text-white font-bold rounded-xl">
                 Admin Sign In
               </Button>
             </Link>
@@ -252,9 +252,9 @@ export default function WelcomePage() {
                 <Link to="/request?tab=track" className="w-full sm:w-auto">
                   <Button
                     variant="outline"
-                    className="w-full sm:w-auto h-11 px-6 bg-white hover:bg-slate-50 text-[#073474] font-bold text-[14px] rounded-xl border border-slate-200 flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto h-11 px-6 bg-white hover:bg-slate-50 text-[#0a469b] font-bold text-[14px] rounded-xl border border-slate-200 flex items-center justify-center gap-2"
                   >
-                    <Search className="w-4 h-4 text-[#073474]" />
+                    <Search className="w-4 h-4 text-[#0a469b]" />
                     Track Request
                   </Button>
                 </Link>
@@ -339,7 +339,7 @@ export default function WelcomePage() {
                   <Reveal key={step.n} delay={i * 0.08}>
                     <div className="relative bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm h-full flex flex-col">
                       <div className="flex items-center justify-between mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-[#073474] text-white flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl bg-[#0a469b] text-white flex items-center justify-center">
                           <Icon className="w-5 h-5" />
                         </div>
                         <span className="text-xs font-mono font-bold tracking-widest text-[#FF7701]">
@@ -376,7 +376,7 @@ export default function WelcomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
             <Reveal delay={0}>
               <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm h-full">
-                <div className="w-9 h-9 rounded-xl bg-[#EBEFF8] flex items-center justify-center text-[#073474] mb-3">
+                <div className="w-9 h-9 rounded-xl bg-[#EBEFF8] flex items-center justify-center text-[#0a469b] mb-3">
                   <FileText className="w-4 h-4" />
                 </div>
                 <h3 className="text-[13px] font-bold text-[#0F172A]">
@@ -389,7 +389,7 @@ export default function WelcomePage() {
             </Reveal>
             <Reveal delay={0.06}>
               <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm h-full">
-                <div className="w-9 h-9 rounded-xl bg-[#EBEFF8] flex items-center justify-center text-[#073474] mb-3">
+                <div className="w-9 h-9 rounded-xl bg-[#EBEFF8] flex items-center justify-center text-[#0a469b] mb-3">
                   <Copy className="w-4 h-4" />
                 </div>
                 <h3 className="text-[13px] font-bold text-[#0F172A]">
@@ -415,7 +415,7 @@ export default function WelcomePage() {
             </Reveal>
             <Reveal delay={0.18}>
               <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm h-full">
-                <div className="w-9 h-9 rounded-xl bg-[#EBEFF8] flex items-center justify-center text-[#073474] mb-3">
+                <div className="w-9 h-9 rounded-xl bg-[#EBEFF8] flex items-center justify-center text-[#0a469b] mb-3">
                   <Hash className="w-4 h-4" />
                 </div>
                 <h3 className="text-[13px] font-bold text-[#0F172A]">Pages</h3>
@@ -426,7 +426,7 @@ export default function WelcomePage() {
             </Reveal>
             <Reveal delay={0.24}>
               <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm h-full">
-                <div className="w-9 h-9 rounded-xl bg-[#EBEFF8] flex items-center justify-center text-[#073474] mb-3">
+                <div className="w-9 h-9 rounded-xl bg-[#EBEFF8] flex items-center justify-center text-[#0a469b] mb-3">
                   <Layers className="w-4 h-4" />
                 </div>
                 <h3 className="text-[13px] font-bold text-[#0F172A]">Copies</h3>
@@ -470,7 +470,7 @@ export default function WelcomePage() {
             >
               <path
                 d="M 80 0 L 600 0 L 600 400 L 0 400 C 40 320 60 220 120 160 C 180 100 40 40 80 0 Z"
-                fill="#073474"
+                fill="#0a469b"
                 opacity="0.96"
               />
             </svg>
@@ -520,7 +520,7 @@ export default function WelcomePage() {
             <div className="lg:col-span-7">
               <form
                 onSubmit={handleTrackSubmit}
-                className="bg-white rounded-2xl border border-slate-200 p-2 flex items-center gap-2 shadow-sm focus-within:border-[#073474] focus-within:ring-2 focus-within:ring-[#073474]/10 transition-all"
+                className="bg-white rounded-2xl border border-slate-200 p-2 flex items-center gap-2 shadow-sm focus-within:border-[#0a469b] focus-within:ring-2 focus-within:ring-[#0a469b]/10 transition-all"
               >
                 <div className="pl-3 text-slate-400 hidden sm:block">
                   <Search className="w-4 h-4" />
@@ -535,7 +535,7 @@ export default function WelcomePage() {
                 />
                 <Button
                   type="submit"
-                  className="h-10 px-5 bg-[#073474] hover:bg-[#052655] text-white text-[13px] font-bold rounded-xl shrink-0"
+                  className="h-10 px-5 bg-[#0a469b] hover:bg-[#052655] text-white text-[13px] font-bold rounded-xl shrink-0"
                 >
                   Track Request
                 </Button>
@@ -580,25 +580,25 @@ export default function WelcomePage() {
             <div className="flex flex-wrap items-center gap-5 text-xs font-semibold text-slate-600">
               <a
                 href="#how-it-works"
-                className="hover:text-[#073474] transition-colors"
+                className="hover:text-[#0a469b] transition-colors"
               >
                 How It Works
               </a>
               <a
                 href="#guidelines"
-                className="hover:text-[#073474] transition-colors"
+                className="hover:text-[#0a469b] transition-colors"
               >
                 Guidelines
               </a>
               <a
                 href="#track"
-                className="hover:text-[#073474] transition-colors"
+                className="hover:text-[#0a469b] transition-colors"
               >
                 Track Request
               </a>
               <Link
                 to="/login"
-                className="hover:text-[#073474] transition-colors"
+                className="hover:text-[#0a469b] transition-colors"
               >
                 Admin Sign In
               </Link>
