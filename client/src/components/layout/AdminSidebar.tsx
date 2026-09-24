@@ -7,7 +7,6 @@ import {
   LogOut,
   Package,
   FileSpreadsheet,
-  Circle,
   ChevronRight,
 } from "lucide-react";
 import { useAdminAuth } from "../../context/AdminAuthContext";

@@ -1,4 +1,4 @@
-import { Search, Bell } from "lucide-react";
+import { Bell } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
 import {
@@ -6,7 +6,6 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface AdminNavbarProps {
   currentPageTitle?: string;

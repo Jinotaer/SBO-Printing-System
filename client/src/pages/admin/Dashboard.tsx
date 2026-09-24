@@ -1,16 +1,11 @@
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useAdminAuth } from '../../context/AdminAuthContext';
 import { AdminLayout } from '../../components/layout/AdminLayout';
+import { Pagination } from '../../common/Pagination';
 import {
   Printer,
-  Layers,
-  Clock,
-  CheckCircle2,
-  Calendar,
   ShieldCheck,
-  Check,
   AlertCircle,
-  FileText,
 } from 'lucide-react';
 
 interface PrintJob {
@@ -95,10 +90,13 @@ const INITIAL_JOBS: PrintJob[] = [
   },
 ];
 
+const TABLE_PAGE_SIZE = 4;
+
 export default function AdminDashboard() {
   const { adminUser } = useAdminAuth();
   const [jobs, setJobs] = useState<PrintJob[]>(INITIAL_JOBS);
   const [activeFilter, setActiveFilter] = useState<'all' | 'pending' | 'processing' | 'ready' | 'completed'>('all');
+  const [tablePage, setTablePage] = useState(1);
 
   const updateJobStatus = (id: string, newStatus: PrintJob['status']) => {
     setJobs((prev) =>
@@ -106,10 +104,29 @@ export default function AdminDashboard() {
     );
   };
 
-  const filteredJobs = jobs.filter((j) => {
-    if (activeFilter === 'all') return true;
-    return j.status === activeFilter;
-  });
+  const filteredJobs = useMemo(() => {
+    return jobs.filter((j) => {
+      if (activeFilter === 'all') return true;
+      return j.status === activeFilter;
+    });
+  }, [jobs, activeFilter]);
+
+  // reset to first page when filter changes
+  useEffect(() => {
+    setTablePage(1);
+  }, [activeFilter]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredJobs.length / TABLE_PAGE_SIZE));
+
+  // clamp page if jobs were removed and page is now out of range
+  useEffect(() => {
+    if (tablePage > totalPages) setTablePage(totalPages);
+  }, [tablePage, totalPages]);
+
+  const paginatedJobs = useMemo(() => {
+    const start = (tablePage - 1) * TABLE_PAGE_SIZE;
+    return filteredJobs.slice(start, start + TABLE_PAGE_SIZE);
+  }, [filteredJobs, tablePage]);
 
   return (
     <AdminLayout
@@ -144,91 +161,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Quick Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                Today's Queue
-              </span>
-              <div className="p-2 bg-[#073474]/10 rounded-xl text-[#073474]">
-                <Layers className="w-4 h-4" />
-              </div>
-            </div>
-            <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-3xl font-black text-[#2A1400]">
-                {jobs.length}
-              </span>
-              <span className="text-xs font-semibold text-slate-400">/ 25 max capacity</span>
-            </div>
-            <div className="w-full bg-slate-100 h-1.5 rounded-full mt-3 overflow-hidden">
-              <div
-                className="bg-[#073474] h-full rounded-full transition-all duration-500"
-                style={{ width: `${(jobs.length / 25) * 100}%` }}
-              />
-            </div>
-          </div>
-
-          <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                Processing Prints
-              </span>
-              <div className="p-2 bg-amber-500/10 rounded-xl text-amber-600">
-                <Clock className="w-4 h-4" />
-              </div>
-            </div>
-            <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-3xl font-black text-amber-600">
-                {jobs.filter((j) => j.status === 'processing' || j.status === 'pending').length}
-              </span>
-              <span className="text-xs font-semibold text-slate-400">active in pipeline</span>
-            </div>
-            <p className="text-[11px] font-medium text-slate-400 mt-3">
-              Est. Turnaround: ~15 mins
-            </p>
-          </div>
-
-          <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                Ready at Claim Desk
-              </span>
-              <div className="p-2 bg-emerald-500/10 rounded-xl text-emerald-600">
-                <CheckCircle2 className="w-4 h-4" />
-              </div>
-            </div>
-            <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-3xl font-black text-emerald-600">
-                {jobs.filter((j) => j.status === 'ready').length}
-              </span>
-              <span className="text-xs font-semibold text-slate-400">for pickup</span>
-            </div>
-            <p className="text-[11px] font-medium text-slate-400 mt-3">
-              Stored in SBO Desk tray A
-            </p>
-          </div>
-
-          <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                Completed Jobs
-              </span>
-              <div className="p-2 bg-[#FF7701]/10 rounded-xl text-[#FF7701]">
-                <Calendar className="w-4 h-4" />
-              </div>
-            </div>
-            <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-3xl font-black text-[#FF7701]">128</span>
-              <span className="text-xs font-semibold text-slate-400">this semester</span>
-            </div>
-            <p className="text-[11px] font-medium text-slate-400 mt-3">
-              Zero paper waste recorded
-            </p>
-          </div>
-        </div>
-
-        {/* 2-Column Section: Operational Queue Table & Station Hardware Health */}
+        {/* Operational Queue Table & Station Hardware Health */}
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
           {/* Main Column (2/3 width): Live Queue Table */}
           <div className="xl:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden flex flex-col">
@@ -282,7 +215,7 @@ export default function AdminDashboard() {
                       </td>
                     </tr>
                   ) : (
-                    filteredJobs.map((job) => (
+                    paginatedJobs.map((job) => (
                       <tr key={job.id} className="hover:bg-slate-50/80 transition-colors">
                         {/* Student Info */}
                         <td className="py-3.5 px-4">
@@ -295,8 +228,7 @@ export default function AdminDashboard() {
 
                         {/* Document Specs */}
                         <td className="py-3.5 px-4">
-                          <div className="flex items-center gap-1.5 font-bold text-[#073474]">
-                            <FileText className="w-3.5 h-3.5 text-[#FF7701] shrink-0" />
+                          <div className="font-bold text-[#073474]">
                             <span className="truncate max-w-[200px]" title={job.documentName}>
                               {job.documentName}
                             </span>
@@ -326,26 +258,22 @@ export default function AdminDashboard() {
                         {/* Status Pill */}
                         <td className="py-3.5 px-4 whitespace-nowrap">
                           {job.status === 'pending' && (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
-                              <AlertCircle className="w-3 h-3 text-amber-600" />
+                            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
                               Pending Approval
                             </span>
                           )}
                           {job.status === 'processing' && (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
-                              <Clock className="w-3 h-3 text-blue-600 animate-spin" />
+                            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
                               Printing
                             </span>
                           )}
                           {job.status === 'ready' && (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
                               Ready for Claim
                             </span>
                           )}
                           {job.status === 'completed' && (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200">
-                              <Check className="w-3 h-3 text-slate-500" />
+                            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200">
                               Claimed
                             </span>
                           )}
@@ -389,6 +317,13 @@ export default function AdminDashboard() {
                 </tbody>
               </table>
             </div>
+            <Pagination
+              page={tablePage}
+              total={filteredJobs.length}
+              limit={TABLE_PAGE_SIZE}
+              onPageChange={setTablePage}
+              itemLabel="jobs"
+            />
           </div>
 
           {/* Side Column (1/3 width): Hardware, Supply & Station Status */}
